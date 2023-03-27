@@ -19,6 +19,19 @@ export const LoginPage: React.FC = () => {
     username: "",
     password: "",
   });
+
+  const dataLogin= (e:React.ChangeEvent<HTMLInputElement>)=>{
+    setLoginData({...loginData, [e.target.name]:e.target.value})
+  }
+
+  const handleSubmit = (e:React.FormEvent<HTMLInputElement>)=>{
+    e.preventDefault()
+    console.log(loginData)
+
+  }
+
+
+
   return (
     <Container maxWidth="sm">
       <Grid
@@ -35,21 +48,28 @@ export const LoginPage: React.FC = () => {
             </Typography>
             <Box
               component="form"
+              onSubmit={handleSubmit}
               display="flex"
               flexDirection="column"
               sx={{ width: "100%" }}
             >
               <TextField
                 margin="normal"
+                name="username"
                 label="email"
+                type="email"
                 sx={{ mt: 2, mb: 1.5 }}
                 required
-              />
+                onChange={dataLogin}
+                />
               <TextField
+              name="password"
                 margin="normal"
                 label="password"
+                type="password"
                 sx={{ mt: 1.5, mb: 1.5 }}
                 required
+                onChange={dataLogin}
               />
               <Button type="submit" variant="contained" sx={{ mt: 1.5, mb: 3 }}>
                 send
